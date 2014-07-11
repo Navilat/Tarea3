@@ -1,4 +1,5 @@
 <?php
+session_start();
 $coord = $_POST['nombre'];
 $pass = $_POST['pass'];
 
@@ -11,10 +12,11 @@ $res = pg_query($con, $sql);
 $t = pg_fetch_assoc($res);
 $id_usuario = $t["id_usuario"];
 
-$sql = "select id_grupo from coordinador where id_usuario=".$id_usuario."";
+$sql = "select id_grupo, id_coordinador from coordinador where id_usuario=".$id_usuario."";
 $res = pg_query($con, $sql);
 
 $t = pg_fetch_assoc($res);
+$_SESSION['id_coordinador'] = $t["id_coordinador"];
 if($t["id_grupo"]==1)
 {
     header('Location: coordinador_general.php');
