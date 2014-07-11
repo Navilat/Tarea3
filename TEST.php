@@ -1,15 +1,16 @@
 <?php
-session_start();
-$_SESSION['saludo'] = "hola";
+$cadena = "host = 'localhost' port = '5432' dbname = 'postgres' user = 'postgres' password = '123'";
+$con = pg_connect($cadena) or die (' :( Error de conexion!');
+
+$sql = "select * from grupo";
+$res = pg_query($con,$sql);
+$t = array();
+while($reg=pg_fetch_assoc($res))
+{
+    $t[]=$reg;
+}
+for($i=0;$i<sizeof($t);$i++)
+{
+    echo $t[$i]["crear_coor"];
+}
 ?>
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<title>Registrarse</title>
-</head>
-<body>
-<form action="TEST2.php" method="post">
-<input id="boton_prueba" value="TEST" type="submit"/>
-</form>
-</body>
-</html>
