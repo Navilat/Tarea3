@@ -1,5 +1,6 @@
 <?php
 
-phpinfo();
+session_start();
+echo $_SESSION['saludo'];
 
 ?>
